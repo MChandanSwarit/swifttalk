@@ -1,10 +1,11 @@
-import { create } from "zustand";
+export function extractTime(dateString) {
+	const date = new Date(dateString);
+	const hours = padZero(date.getHours());
+	const minutes = padZero(date.getMinutes());
+	return `${hours}:${minutes}`;
+}
 
-const useConversation = create((set) => ({
-	selectedConversation: null,
-	setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
-	messages: [],
-	setMessages: (messages) => set({ messages }),
-}));
-
-export default useConversation;
+// Helper function to pad single-digit numbers with a leading zero
+function padZero(number) {
+	return number.toString().padStart(2, "0");
+}
